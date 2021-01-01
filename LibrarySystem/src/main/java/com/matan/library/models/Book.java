@@ -19,8 +19,7 @@ public class Book {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@Column(length = 100000)
-	private String description;
+	private Category category;
 	private double price;
 	@Column(length = 100000)
 	private String image;

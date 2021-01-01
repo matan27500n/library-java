@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,8 @@ import com.matan.library.models.Book;
 import com.matan.library.security.ClientType;
 import com.matan.library.security.LoginManager;
 import com.matan.library.security.LoginResponse;
+import com.matan.library.security.TokenManager;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,6 +30,9 @@ import lombok.NoArgsConstructor;
 public class AdminController extends ClientController {
 
 	private String token;
+
+	@Autowired
+	private TokenManager tokenManager;
 
 	@Autowired
 	private LoginManager loginManager;
@@ -50,6 +56,12 @@ public class AdminController extends ClientController {
 		} catch (LoginException e) {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
+	}
+
+	@DeleteMapping("logout")
+	public ResponseEntity<?> logout() {
+		tokenManager.removeToken(token);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 
 	@GetMapping("getOneBook/{id}")
