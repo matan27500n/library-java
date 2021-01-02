@@ -6,4 +6,5 @@ import com.matan.library.models.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 
+	Customer findByEmailAndPassword(String email, String password);
 }

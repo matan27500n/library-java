@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.matan.library.models.Author;
 import com.matan.library.models.Book;
+import com.matan.library.models.Customer;
 
 @Service
 public class AdminService extends ClientService {
@@ -15,7 +16,6 @@ public class AdminService extends ClientService {
 			return true;
 		}
 		return false;
-		// return email.equals("library@library.com") && password.equals("library");
 	}
 
 	public void addAuthor(Author author) {
@@ -38,12 +38,24 @@ public class AdminService extends ClientService {
 		return authorRepository.findAll();
 	}
 
-	public void addBook(Book book) {
-		bookRepository.save(book);
+	public void deleteBook(int id) {
+		bookRepository.deleteById(id);
 	}
 
 	public Book getOneBook(int id) {
 		return bookRepository.getOne(id);
+	}
+
+	public List<Book> getAllBooks() {
+		return bookRepository.findAll();
+	}
+
+	public Customer getOneCustomer(int id) {
+		return customerRepository.getOne(id);
+	}
+
+	public List<Customer> getAllCustomers() {
+		return customerRepository.findAll();
 	}
 
 }

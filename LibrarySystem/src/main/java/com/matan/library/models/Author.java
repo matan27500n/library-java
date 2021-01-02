@@ -29,4 +29,12 @@ public class Author {
 	private String password;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Book> books;
+
+	public void addBook(Book book) {
+		books.add(book);
+	}
+
+	public void removeBook(Book book) {
+		books.remove(book.getId());
+	}
 }
