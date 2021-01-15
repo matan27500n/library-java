@@ -37,8 +37,9 @@ public class LoginManager {
 		case Author:
 			authorService = ctx.getBean(AuthorService.class);
 			if (authorService.login(email, password)) {
-				int authorID = authorService.getCompanyIdByEmailAndPassword(email, password);
+				int authorID = authorService.getAuthorIdByEmailAndPassword(email, password);
 				authorService.setAuthorID(authorID);
+				System.out.println(authorID);
 				return tokenManager.addToken(authorService);
 			}
 		case Customer:

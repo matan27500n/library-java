@@ -35,6 +35,13 @@ public class Author {
 	}
 
 	public void removeBook(Book book) {
-		books.remove(book.getId());
+		books.remove(book);
+	}
+
+	public Author(String firstName, String lastName, String email, String password) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.password = password;
 	}
 }

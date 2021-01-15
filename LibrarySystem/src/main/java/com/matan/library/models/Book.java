@@ -23,4 +23,12 @@ public class Book {
 	private double price;
 	@Column(length = 100000)
 	private String image;
+
+	public Book(String name, Category category, double price, String image) {
+		this.name = name;
+		this.category = category;
+		this.price = price;
+		this.image = image;
+	}
+
 }

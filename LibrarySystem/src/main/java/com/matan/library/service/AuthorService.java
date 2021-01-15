@@ -1,7 +1,6 @@
 package com.matan.library.service;
 
 import java.util.List;
-
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import com.matan.library.exceptions.NotAllowedException;
@@ -28,10 +27,15 @@ public class AuthorService extends ClientService {
 		return false;
 	}
 
+	public void updateAuthor(Author author) {
+		authorRepository.saveAndFlush(author);
+	}
+
 	public void addBook(Book book) {
 		bookRepository.save(book);
 		Author author = authorRepository.getOne(authorID);
 		author.addBook(book);
+		updateAuthor(author);
 	}
 
 	public void updateBook(Book book) {
@@ -39,19 +43,24 @@ public class AuthorService extends ClientService {
 	}
 
 	public void deleteBook(int id) {
+		Author author = authorRepository.getOne(authorID);
+		author.removeBook(bookRepository.getOne(id));
 		bookRepository.deleteById(id);
+		System.out.println("delete successfully");
+		updateAuthor(author);
 	}
 
 	public Book getOneBook(int id) {
 		return bookRepository.getOne(id);
 	}
 
-	public List<Book> getAllBooks() {
+	public List<Book> getAllBooks(int id) {
+		authorID = id;
 		Author author = authorRepository.getOne(authorID);
 		return author.getBooks();
 	}
 
-	public int getCompanyIdByEmailAndPassword(String email, String password) {
+	public int getAuthorIdByEmailAndPassword(String email, String password) {
 		return authorRepository.findByEmailAndPassword(email, password).getId();
 	}
 

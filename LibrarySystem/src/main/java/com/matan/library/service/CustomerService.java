@@ -24,10 +24,18 @@ public class CustomerService extends ClientService {
 
 	@Override
 	public boolean login(String email, String password) throws NotAllowedException {
-		if (authorRepository.findByEmailAndPassword(email, password) != null) {
+		if (customerRepository.findByEmailAndPassword(email, password) != null) {
 			return true;
 		}
 		return false;
+	}
+
+	public void addCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
+
+	public void updateCustomer(Customer customer) {
+		customerRepository.saveAndFlush(customer);
 	}
 
 	public Book getOneBook(int id) {
@@ -38,6 +46,11 @@ public class CustomerService extends ClientService {
 		return bookRepository.findAll();
 	}
 
+	public List<Book> getCustomerBooks() {
+		Customer customer = customerRepository.getOne(customerID);
+		return customer.getBooks();
+	}
+
 	public Customer getOneCustomer(int id) {
 		return customerRepository.getOne(id);
 	}
@@ -45,11 +58,14 @@ public class CustomerService extends ClientService {
 	public void purchaseBook(Book book) {
 		Customer customer = customerRepository.getOne(customerID);
 		customer.addBook(book);
+		updateCustomer(customer);
 	}
 
-	public void cancelPurchase(Book book) {
+	public void cancelPurchase(int id) {
 		Customer customer = customerRepository.getOne(customerID);
+		Book book = bookRepository.getOne(id);
 		customer.deleteBook(book);
+		updateCustomer(customer);
 	}
 
 	public int getCustomerIdByEmailAndPassword(String email, String password) {

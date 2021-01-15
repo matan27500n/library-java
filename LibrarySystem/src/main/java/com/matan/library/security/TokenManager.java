@@ -33,7 +33,7 @@ public class TokenManager {
 		String token = UUID.randomUUID().toString();
 		tokens.add(token);
 		tokensInMemory.put(token, new CustomSession(clientService, System.currentTimeMillis()));
-		System.out.println("tokensInMemory: " + tokensInMemory);
+		// System.out.println("tokensInMemory: " + tokensInMemory);
 		return token;
 	}
 

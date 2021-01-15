@@ -27,9 +27,7 @@ public class TokenExpiredJob {
 			Date other = new Date(System.currentTimeMillis());
 			if (now.before(other)) {
 				iterator.remove();
-				System.out.println("deleting...");
 			}
-			System.out.println(tokensInMemory.entrySet());
 		}
 	}
 

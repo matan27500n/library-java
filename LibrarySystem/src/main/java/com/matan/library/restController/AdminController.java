@@ -44,7 +44,7 @@ public class AdminController extends ClientController {
 	public ResponseEntity<?> login(@PathVariable String email, @PathVariable String password) throws LoginException {
 		try {
 			token = loginManager.login2(email, password, ClientType.Admin);
-			System.out.println("token: " + token);
+			// System.out.println("token: " + token);
 			LoginResponse loginResponse = new LoginResponse();
 			loginResponse.setToken(token);
 			loginResponse.setType(ClientType.Admin);

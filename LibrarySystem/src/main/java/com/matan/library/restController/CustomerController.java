@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,7 +46,7 @@ public class CustomerController extends ClientController {
 	public ResponseEntity<?> login(@PathVariable String email, @PathVariable String password) throws LoginException {
 		try {
 			token = loginManager.login2(email, password, ClientType.Customer);
-			System.out.println("token: " + token);
+			// System.out.println("token: " + token);
 			LoginResponse loginResponse = new LoginResponse();
 			loginResponse.setToken(token);
 			loginResponse.setType(ClientType.Customer);
@@ -71,13 +72,14 @@ public class CustomerController extends ClientController {
 
 	@PostMapping("purchaseBook")
 	public ResponseEntity<?> purchaseBook(@RequestBody Book book) {
+		System.out.println("started");
 		customerService.purchaseBook(book);
-		return new ResponseEntity<Book>(HttpStatus.CREATED);
+		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 
-	@DeleteMapping("cancelPurchase")
-	public ResponseEntity<?> cancelPurchase(@RequestBody Book book) {
-		customerService.cancelPurchase(book);
+	@DeleteMapping("cancelPurchase/{id}")
+	public ResponseEntity<?> cancelPurchase(@PathVariable int id) {
+		customerService.cancelPurchase(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
 
@@ -89,6 +91,23 @@ public class CustomerController extends ClientController {
 	@GetMapping("getAllBooks")
 	public ResponseEntity<?> getAllBooks() {
 		return new ResponseEntity<List<Book>>(customerService.getAllBooks(), HttpStatus.OK);
+	}
+
+	@PutMapping("setCustomerID/{id}")
+	public ResponseEntity<?> setCustomerID(@PathVariable int id) {
+		customerService.setCustomerID(id);
+		return new ResponseEntity<Void>(HttpStatus.OK);
+	}
+
+	@GetMapping("getCustomerBooks")
+	public ResponseEntity<?> getCustomerBooks() {
+		return new ResponseEntity<List<Book>>(customerService.getCustomerBooks(), HttpStatus.OK);
+	}
+
+	@GetMapping("getCustomerID/{email}/{password}")
+	public ResponseEntity<?> getCustomerID(@PathVariable String email, @PathVariable String password) {
+		return new ResponseEntity<Integer>(customerService.getCustomerIdByEmailAndPassword(email, password),
+				HttpStatus.OK);
 	}
 
 }

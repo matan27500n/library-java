@@ -12,10 +12,7 @@ import com.matan.library.models.Customer;
 public class AdminService extends ClientService {
 
 	public boolean login(String email, String password) {
-		if (authorRepository.findByEmailAndPassword(email, password) != null) {
-			return true;
-		}
-		return false;
+		return email.equals("admin@admin.com") && password.equals("admin");
 	}
 
 	public void addAuthor(Author author) {

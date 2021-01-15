@@ -41,10 +41,9 @@ public class AuthorController extends ClientController {
 
 	@PostMapping("login/{email}/{password}")
 	public ResponseEntity<?> login(@PathVariable String email, @PathVariable String password) throws LoginException {
-		System.out.println("started");
 		try {
 			token = loginManager.login2(email, password, ClientType.Author);
-			System.out.println("token: " + token);
+			// System.out.println("token: " + token);
 			LoginResponse loginResponse = new LoginResponse();
 			loginResponse.setToken(token);
 			loginResponse.setType(ClientType.Author);
@@ -86,9 +85,14 @@ public class AuthorController extends ClientController {
 		return new ResponseEntity<Book>(authorService.getOneBook(id), HttpStatus.OK);
 	}
 
-	@GetMapping("getAllBooks")
-	public ResponseEntity<?> getAllBooks() {
-		return new ResponseEntity<List<Book>>(authorService.getAllBooks(), HttpStatus.OK);
+	@GetMapping("getAllBooks/{id}")
+	public ResponseEntity<?> getAllBooks(@PathVariable int id) {
+		return new ResponseEntity<List<Book>>(authorService.getAllBooks(id), HttpStatus.OK);
+	}
+
+	@GetMapping("getAuthorID/{email}/{password}")
+	public ResponseEntity<?> getAuthor(@PathVariable String email, @PathVariable String password) {
+		return new ResponseEntity<Integer>(authorService.getAuthorIdByEmailAndPassword(email, password), HttpStatus.OK);
 	}
 
 }

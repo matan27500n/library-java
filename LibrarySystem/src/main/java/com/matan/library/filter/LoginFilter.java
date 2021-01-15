@@ -29,13 +29,13 @@ public class LoginFilter implements Filter {
 		String pageRequested = req.getRequestURL().toString();
 
 		if (pageRequested.contains("/login")) {
-			System.out.println(pageRequested);
+			// System.out.println(pageRequested);
 			chain.doFilter(request, response);
 			return;
 		}
 
 		if (pageRequested.contains("/register")) {
-			System.out.println(pageRequested);
+			// System.out.println(pageRequested);
 			chain.doFilter(request, response);
 			return;
 		}
@@ -44,7 +44,7 @@ public class LoginFilter implements Filter {
 		if (token == null) {
 			token = admin.getToken();
 		}
-		System.out.println("Token : " + token);
+		// System.out.println("Token : " + token);
 
 		if (token != null) {
 			try {
