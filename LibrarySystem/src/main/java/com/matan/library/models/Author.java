@@ -23,8 +23,8 @@ public class Author {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String firstName;
-	private String lastName;
+	private String first_name;
+	private String last_name;
 	private String email;
 	private String password;
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -39,8 +39,8 @@ public class Author {
 	}
 
 	public Author(String firstName, String lastName, String email, String password) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+		this.first_name = firstName;
+		this.last_name = lastName;
 		this.email = email;
 		this.password = password;
 	}

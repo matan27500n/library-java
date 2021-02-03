@@ -57,6 +57,7 @@ public class CustomerService extends ClientService {
 
 	public void purchaseBook(Book book) {
 		Customer customer = customerRepository.getOne(customerID);
+		book.setAmount(book.getAmount() - 1);
 		customer.addBook(book);
 		updateCustomer(customer);
 	}
@@ -64,6 +65,7 @@ public class CustomerService extends ClientService {
 	public void cancelPurchase(int id) {
 		Customer customer = customerRepository.getOne(customerID);
 		Book book = bookRepository.getOne(id);
+		book.setAmount(book.getAmount() + 1);
 		customer.deleteBook(book);
 		updateCustomer(customer);
 	}

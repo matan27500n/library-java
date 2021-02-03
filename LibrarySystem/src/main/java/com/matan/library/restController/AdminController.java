@@ -116,4 +116,10 @@ public class AdminController extends ClientController {
 	public ResponseEntity<?> getAllCustomers() {
 		return new ResponseEntity<List<Customer>>(adminService.getAllCustomers(), HttpStatus.OK);
 	}
+
+	@DeleteMapping("deleteCustomer/{id}")
+	public ResponseEntity<?> deleteCustomer(@PathVariable int id) {
+		adminService.deleteCustomer(id);
+		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+	}
 }

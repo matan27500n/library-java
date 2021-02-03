@@ -47,6 +47,14 @@ public class AdminService extends ClientService {
 		return bookRepository.findAll();
 	}
 
+	public void addCustomer(Customer customer) {
+		customerRepository.save(customer);
+	}
+
+	public void deleteCustomer(int id) {
+		customerRepository.deleteById(id);
+	}
+
 	public Customer getOneCustomer(int id) {
 		return customerRepository.getOne(id);
 	}
