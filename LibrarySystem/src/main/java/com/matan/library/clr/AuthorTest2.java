@@ -2,12 +2,10 @@ package com.matan.library.clr;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-
 import com.matan.library.models.Author;
 import com.matan.library.models.Book;
 import com.matan.library.models.Category;
@@ -49,6 +47,47 @@ public class AuthorTest2 implements CommandLineRunner {
 		authorService.setAuthorID(author.getId());
 		authorService.addBook(book2);
 		books.add(book2);
+
+		String summary3 = "The legendary story of a resistance hero\r\n" + "\r\n"
+				+ "'Full of death and excitement' - Sunday Times\r\n" + "\r\n" + "'Unique' - TLS\r\n" + "\r\n"
+				+ "George Psychoundakis was a young shepherd boy who knew the island of Crete intimately when the Nazis invaded by air in 1941. He immediately joined the resistance and took on the crucial job of war-time runner.\r\n"
+				+ "\r\n"
+				+ "It was not only the toughest but the most dangerous job of all. It involved immense journeys carrying vital messages, smuggling arms and explosives and guiding Allied soldiers, agents and commandos through heavily garrisoned territory. And George did not escape capture and torture on his many forays.\r\n"
+				+ "\r\n"
+				+ "This brilliant account of George's activities across mountainous terrain, come blazing summer or freezing winter, is a gripping story of bravery against impossible odds.";
+		String image3 = "https://www.penguin.co.uk/content/dam/prh/books/242/24290/9780141043340.jpg.transform/PRHDesktopWide_small/image.jpg";
+		Book book3 = new Book("THE CRETAN RUNNER", Category.Action, 30, 70, summary3, image3);
+		authorService.setAuthorID(author.getId());
+		authorService.addBook(book3);
+		books.add(book3);
+
+		String summary4 = "Adam Tooze's The Wages of Destruction: The Making and Breaking of the Nazi Economy provides a groundbreaking new account of how Hitler established himself in power, mobilized for war - and led his country to annihilation.\r\n"
+				+ "\r\n"
+				+ "Was the tragedy of the Second World War determined by Nazi Germany's terrifying power, or by its fatal weakness?\r\n"
+				+ "\r\n"
+				+ "This gripping and universally-acclaimed new history tells the real story of the cost of Hitler's plans for world domination - and will overturn everything you thought you knew about the Third Reich.\r\n"
+				+ "\r\n" + "'A tour de force' Niall Ferguson\r\n" + "\r\n"
+				+ "'Masterful ... smashes a gallery of preconceptions' The Times\r\n" + "\r\n"
+				+ "'This book will change the way we look at Nazi history ... nothing less than a masterpiece. Rejoice, rejoice, for a great historian is born' Sunday Telegraph\r\n"
+				+ "\r\n"
+				+ "'A remarkable and gripping revision of the history of Nazi Germany' New Statesman Books of the Year\r\n"
+				+ "\r\n" + "'A powerful and provocative reassessment of the whole story' Richard Overy";
+		String image4 = "https://images-na.ssl-images-amazon.com/images/I/61RsLNTPW7L.jpg";
+		Book book4 = new Book("The Wages of Destruction", Category.Drama, 70, 40, summary4, image4);
+		authorService.setAuthorID(author.getId());
+		authorService.addBook(book4);
+		books.add(book4);
+
+		String summary5 = "A prominent Viennese psychiatrist before the war, Viktor Frankl was uniquely able to observe the way that he and other inmates coped with the experience of being in Auschwitz. He noticed that it was the men who comforted others and who gave away their last piece of bread who survived the longest - and who offered proof that everything can be taken away from us except the ability to choose our attitude in any given set of circumstances.\r\n"
+				+ "\r\n"
+				+ "The sort of person the prisoner became was the result of an inner decision and not of camp influences alone. Only those who allowed their inner hold on their moral and spiritual selves to subside eventually fell victim to the camp's degenerating influence - while those who made a victory of those experiences turned them into an inner triumph.\r\n"
+				+ "\r\n"
+				+ "Frankl came to believe that man's deepest desire is to search for meaning and purpose. This outstanding work offers us all a way to transcend suffering and find significance in the art of living.";
+		String image5 = "https://images-na.ssl-images-amazon.com/images/I/61S26j0szkL.jpg";
+		Book book5 = new Book("Man's Search For Meaning", Category.Drama, 100, 30, summary5, image5);
+		authorService.setAuthorID(author.getId());
+		authorService.addBook(book5);
+		books.add(book5);
 
 		author.setBooks(books);
 		authorService.updateAuthor(author);

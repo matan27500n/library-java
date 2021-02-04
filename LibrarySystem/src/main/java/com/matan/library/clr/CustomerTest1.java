@@ -9,7 +9,7 @@ import com.matan.library.models.Customer;
 import com.matan.library.service.CustomerService;
 
 @Component
-@Order(3)
+@Order(4)
 public class CustomerTest1 implements CommandLineRunner {
 
 	@Autowired
@@ -22,6 +22,9 @@ public class CustomerTest1 implements CommandLineRunner {
 
 		Customer customer2 = new Customer("Yael", "Eyal", "yael@gmail.com", "1234");
 		customerService.addCustomer(customer2);
+
+		Customer customer3 = new Customer("Barel", "Nissan", "barel@gmail.com", "1234");
+		customerService.addCustomer(customer3);
 
 	}
 
